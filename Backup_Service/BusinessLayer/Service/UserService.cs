@@ -10,8 +10,8 @@ namespace BusinessLayer.Service;
 public class UserService : IUserService
 {
     private readonly IUserRepository _contextUser;
-    private readonly Mapper _mapper;
-    public UserService(IUserRepository context, Mapper mapper) 
+    private readonly IMapper _mapper;
+    public UserService(IUserRepository context, IMapper mapper) 
     {
         _contextUser = context;
         _mapper = mapper;
@@ -19,7 +19,7 @@ public class UserService : IUserService
 
     public async Task<UserModel> GetUserModelByIdAsync(int id)
     {
-        var user = await _contextUser.GetUserByIdAsync(id);
+        var user = await _contextUser.GetByIdAsync(id);
         return _mapper.Map<UserModel>(user);
     }
 
@@ -29,10 +29,10 @@ public class UserService : IUserService
         return await _contextUser.AddAsync(user);
     }
 
-    public async Task<User> UpdateUserAsync(UserModel userModel)
+    public async Task<User> UpdateUserAsync(UserModel userModel, int id)
     {
         var user = _mapper.Map<User>(userModel);
-        return await _contextUser.UpdateAsync(user);
+        return await _contextUser.UpdateAsync(user, id);
     }
 
     public async Task DeleteUserAsync(int id)
@@ -40,9 +40,9 @@ public class UserService : IUserService
         await _contextUser.DeleteAsync(id);
     }
 
-    public IQueryable GetAllUsers()
+    public IQueryable<UserModel> GetAllUsers()
     {
-        var accounts = _contextUser.GetAll();
-        return _mapper.Map<IQueryable<AccountModel>>(accounts);
+        var users = _contextUser.GetAll();
+        return _mapper.ProjectTo<UserModel>(users);
     }
 }

@@ -17,20 +17,20 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .IsRequired()
             .HasMaxLength(30);
 
-        builder.Property(x => x.TarrifType)
+        builder.Property(x => x.TariffType)
             .IsRequired();
 
         builder
             .HasOne(x => x.Tariff)
             .WithMany(x => x.Accounts)
-            .HasForeignKey(x => x.TarrifType)
-            .HasPrincipalKey(x => x.TariffName);
+            .HasForeignKey(x => x.TariffType)
+            .HasPrincipalKey(x => x.Id);
 
         builder
             .HasMany(x => x.Backups)
             .WithOne(x => x.Account)
-            .HasForeignKey(x => x.TarrifType)
-            .HasPrincipalKey(x => x.TarrifType);
+            .HasForeignKey(x => x.TariffType)
+            .HasPrincipalKey(x => x.TariffType);
 
         builder
             .HasOne(x => x.Storage)

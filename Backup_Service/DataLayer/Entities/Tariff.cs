@@ -1,6 +1,6 @@
 ﻿namespace DataLayer.Entities;
 
-public class Tariff : BaseEntity
+public class  Tariff : BaseEntity
 {
     public string TariffName { get; set; }
     public decimal Price { get; set; }

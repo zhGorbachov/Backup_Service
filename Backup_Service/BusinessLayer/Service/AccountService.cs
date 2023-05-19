@@ -10,8 +10,8 @@ namespace BusinessLayer.Service;
 public class AccountService : IAccountService
 {
     private readonly IAccountRepository _contextAccount;
-    private readonly Mapper _mapper;
-    public AccountService(IAccountRepository context, Mapper mapper) 
+    private readonly IMapper _mapper;
+    public AccountService(IAccountRepository context, IMapper mapper) 
     {
         _contextAccount = context;
         _mapper = mapper;
@@ -19,28 +19,28 @@ public class AccountService : IAccountService
 
     public async Task<AccountModel> GetAccountModelByIdAsync(int id)
     {
-        var account = await _contextAccount.GetAccountByIdAsync(id);
+        var account = await _contextAccount.GetByIdAsync(id);
         return _mapper.Map<AccountModel>(account);
         // Obratitsa k repo i poluchity otvet tipa
         // otvet korotiy poluchil - zamapity
     }
 
-    public IQueryable GetAccountModelsByTariffType(string tariff)
+    public IQueryable<AccountModel> GetAccountModelsByTariffType(int idTariff)
     {
-        var accounts = _contextAccount.GetAccountsByTariffType(tariff);
-        return _mapper.Map<IQueryable<AccountModel>>(accounts);
+        var accounts = _contextAccount.GetAccountsByTariffType(idTariff);
+        return _mapper.ProjectTo<AccountModel>(accounts);
     }
 
-    public IQueryable GetAccountModelsByUserId(int id)
+    public IQueryable<AccountModel> GetAccountModelsByUserId(int id)
     {
-        var account = _contextAccount.GetAccountsByUserId(id);
-        return _mapper.Map<IQueryable<AccountModel>>(account);
+        var accounts = _contextAccount.GetAccountsByUserId(id);
+        return _mapper.ProjectTo<AccountModel>(accounts);
     }
 
-    public IQueryable GetAccountModelsByStorageId(int idStorage)
+    public IQueryable<AccountModel> GetAccountModelsByStorageId(int idStorage)
     {
-        var account = _contextAccount.GetAccountsByStorageId(idStorage);
-        return _mapper.Map<IQueryable<AccountModel>>(account);
+        var accounts = _contextAccount.GetAccountsByStorageId(idStorage);
+        return _mapper.ProjectTo<AccountModel>(accounts);
     }
     
     public async Task<Account> AddAccountAsync(AccountModel accountModel)
@@ -49,10 +49,10 @@ public class AccountService : IAccountService
         return await _contextAccount.AddAsync(account);
     }
 
-    public async Task<Account> UpdateAccountAsync(AccountModel accountModel)
+    public async Task<Account> UpdateAccountAsync(AccountModel accountModel, int id)
     {
         var account = _mapper.Map<Account>(accountModel);
-        return await _contextAccount.UpdateAsync(account);
+        return await _contextAccount.UpdateAsync(account, id);
     }
 
     public async Task DeleteAccountAsync(int id)
@@ -60,9 +60,9 @@ public class AccountService : IAccountService
         await _contextAccount.DeleteAsync(id);
     }
 
-    public IQueryable GetAllAccounts()
+    public IQueryable<AccountModel> GetAllAccounts()
     {
         var accounts = _contextAccount.GetAll();
-        return _mapper.Map<IQueryable<AccountModel>>(accounts);;
+        return _mapper.ProjectTo<AccountModel>(accounts);
     }
 }

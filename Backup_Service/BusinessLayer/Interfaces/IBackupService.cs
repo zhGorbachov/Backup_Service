@@ -8,7 +8,7 @@ public interface IBackupService
     public Task<BackupModel> GetBackupModelByIdAsync(int id);
     public IQueryable GetBackupModelsByIdStorage(int idStorage);
     public Task<Backup> AddBackupAsync(BackupModel backupModel);
-    public Task<Backup> UpdateBackupAsync(BackupModel backupModel);
+    public Task<Backup> UpdateBackupAsync(BackupModel backupModel, int id);
     public Task DeleteBackupAsync(int id);
-    public IQueryable GetAllBackups();
+    public IQueryable<BackupModel> GetAllBackups();
 }

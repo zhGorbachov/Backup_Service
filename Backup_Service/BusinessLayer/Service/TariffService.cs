@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using BusinessLayer.Interfaces;
 using BusinessLayer.Models;
 using DataLayer.Entities;
@@ -9,8 +10,8 @@ namespace BusinessLayer.Service;
 public class TariffService : ITariffService
 {
     private readonly ITariffRepository _contextTariff;
-    private readonly Mapper _mapper;
-    public TariffService(ITariffRepository context, Mapper mapper) 
+    private readonly IMapper _mapper;
+    public TariffService(ITariffRepository context, IMapper mapper) 
     {
         _contextTariff = context;
         _mapper = mapper;
@@ -18,7 +19,7 @@ public class TariffService : ITariffService
     
     public async Task<TariffModel> GetTariffModelByIdAsync(int id)
     {
-        var tariff = await _contextTariff.GetTariffByIdAsync(id);
+        var tariff = await _contextTariff.GetByIdAsync(id);
         return _mapper.Map<TariffModel>(tariff);
     }
 
@@ -28,10 +29,10 @@ public class TariffService : ITariffService
         return await _contextTariff.AddAsync(tariff);
     }
 
-    public async Task<Tariff> UpdateTariffAsync(TariffModel tariffModel)
+    public async Task<Tariff> UpdateTariffAsync(TariffModel tariffModel, int id)
     {
         var tariff = _mapper.Map<Tariff>(tariffModel);
-        return await _contextTariff.UpdateAsync(tariff);
+        return await _contextTariff.UpdateAsync(tariff, id);
     }
 
     public async Task DeleteTariffAsync(int id)
@@ -39,9 +40,9 @@ public class TariffService : ITariffService
         await _contextTariff.DeleteAsync(id);
     }
 
-    public IQueryable GetAllTariffs()
+    public IQueryable<TariffModel> GetAllTariffs()
     {
         var tariffs = _contextTariff.GetAll();
-        return _mapper.Map<IQueryable<TariffModel>>(tariffs);
+        return _mapper.ProjectTo<TariffModel>(tariffs);
     }
 }

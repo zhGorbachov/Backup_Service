@@ -12,15 +12,15 @@ public class AccountRepository : GenericRepository<Account>, IAccountRepository
         
     }
 
-    public async Task<Account> GetAccountByIdAsync(int id)
-    {
-        var account = await GetAll().FirstAsync(x => x.Id == id);
-        return account;
-    }
+    // public async Task<Account> GetAccountByIdAsync(int id)
+    // {
+    //     var account = await GetByIdAsync(id);
+    //     return account;
+    // }
     
-    public IQueryable GetAccountsByTariffType(string tariff)
+    public IQueryable GetAccountsByTariffType(int idTariff)
     {
-        var accounts = GetAll().Where(x => x.TarrifType == tariff);
+        var accounts = GetAll().Where(x => x.Id == idTariff);
         
         return accounts;
     }

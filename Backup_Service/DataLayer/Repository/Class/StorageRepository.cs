@@ -12,9 +12,9 @@ public class StorageRepository : GenericRepository<Storage>, IStorageRepository
         
     }
 
-    public Task<Storage> GetStorageByIdAsync(int id)
-    {
-        var storage = GetAll().FirstAsync(x => x.Id == id);
-        return storage;
-    }
+    // public async Task<Storage> GetStorageByIdAsync(int id)
+    // {
+    //     var storage = await GetByIdAsync(id);
+    //     return storage;
+    // }
 }

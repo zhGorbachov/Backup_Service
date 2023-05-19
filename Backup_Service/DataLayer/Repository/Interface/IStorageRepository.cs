@@ -4,5 +4,5 @@ namespace DataLayer.Repository.Interface;
 
 public interface IStorageRepository : IGenericRepository<Storage>
 {
-    public Task<Storage> GetStorageByIdAsync(int id);
+    // public Task<Storage> GetStorageByIdAsync(int id);
 }

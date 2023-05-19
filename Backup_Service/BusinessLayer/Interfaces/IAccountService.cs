@@ -7,12 +7,12 @@ namespace BusinessLayer.Interfaces;
 public interface IAccountService
 {
     public Task<AccountModel> GetAccountModelByIdAsync(int id);
-    public IQueryable GetAccountModelsByTariffType(string tariff);
-    public IQueryable GetAccountModelsByUserId(int id);
-    public IQueryable GetAccountModelsByStorageId(int idStorage);
+    public IQueryable<AccountModel> GetAccountModelsByTariffType(int idTariff);
+    public IQueryable<AccountModel> GetAccountModelsByUserId(int id);
+    public IQueryable<AccountModel> GetAccountModelsByStorageId(int idStorage);
     public Task<Account> AddAccountAsync(AccountModel accountModel);
-    public Task<Account> UpdateAccountAsync(AccountModel accountModel);
+    public Task<Account> UpdateAccountAsync(AccountModel accountModel, int id);
     public Task DeleteAccountAsync(int id);
-    public IQueryable GetAllAccounts();
+    public IQueryable<AccountModel> GetAllAccounts();
 
 }

@@ -19,8 +19,9 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
         return result.Entity;
     }
 
-    public async Task<TEntity> UpdateAsync(TEntity entity)
+    public async Task<TEntity> UpdateAsync(TEntity entity, int id)
     {
+        entity.Id = id;
         var result = _context.Set<TEntity>().Update(entity);
         await _context.SaveChangesAsync();
         return result.Entity;
@@ -40,5 +41,11 @@ public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEnt
     {
         var entityList = _context.Set<TEntity>();
         return entityList;
+    }
+
+    public async Task<TEntity> GetByIdAsync(int id)
+    {
+        var entity = await _context.Set<TEntity>().FindAsync(id);
+        return entity;
     }
 }

@@ -10,8 +10,8 @@ namespace BusinessLayer.Service;
 public class BackupService : IBackupService
 {
     private readonly IBackupRepository _contextBackup;
-    private readonly Mapper _mapper;
-    public BackupService(IBackupRepository context, Mapper mapper) 
+    private readonly IMapper _mapper;
+    public BackupService(IBackupRepository context, IMapper mapper) 
     {
         _contextBackup = context;
         _mapper = mapper;
@@ -19,14 +19,14 @@ public class BackupService : IBackupService
 
     public async Task<BackupModel> GetBackupModelByIdAsync(int id)
     {
-        var backup = await _contextBackup.GetBackupByIdAsync(id);
+        var backup = await _contextBackup.GetByIdAsync(id);
         return _mapper.Map<BackupModel>(backup);
     }
 
     public IQueryable GetBackupModelsByIdStorage(int idStorage)
     {
         var backups = _contextBackup.GetBackupsByIdStorage(idStorage);
-        return _mapper.Map<IQueryable<BackupModel>>(backups);
+        return _mapper.ProjectTo<BackupModel>(backups);
     }
 
     public async Task<Backup> AddBackupAsync(BackupModel backupModel)
@@ -35,10 +35,10 @@ public class BackupService : IBackupService
         return await _contextBackup.AddAsync(backup);
     }
 
-    public async Task<Backup> UpdateBackupAsync(BackupModel backupModel)
+    public async Task<Backup> UpdateBackupAsync(BackupModel backupModel, int id)
     {
         var backup = _mapper.Map<Backup>(backupModel);
-        return await _contextBackup.UpdateAsync(backup);
+        return await _contextBackup.UpdateAsync(backup, id);
     }
 
     public async Task DeleteBackupAsync(int id)
@@ -46,9 +46,9 @@ public class BackupService : IBackupService
         await _contextBackup.DeleteAsync(id);
     }
 
-    public IQueryable GetAllBackups()
+    public IQueryable<BackupModel> GetAllBackups()
     {
         var backups = _contextBackup.GetAll();
-        return _mapper.Map<IQueryable<BackupModel>>(backups);
+        return _mapper.ProjectTo<BackupModel>(backups);
     }
 }

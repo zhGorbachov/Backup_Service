@@ -1,6 +1,8 @@
+using BusinessLayer.Extensions;
 using DataLayer.Context;
 using DataLayer.Extensions;
-using Microsoft.EntityFrameworkCore;
+using PresentationLayer.Extensions;
+using PresentationLayer.Mapping;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,12 +10,15 @@ IConfiguration configuration = builder.Configuration;
 builder.Services.Inject(configuration);
 
 // Add services to the container.
+
+builder.Services.AddMapper();
+
+builder.Services.AddServices();
+
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
-
-builder.Services.AddControllersWithViews();
-//builder.Services.AddSwaggerGen();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -37,12 +42,12 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-// app.UseSwagger();
-// app.UseSwaggerUI(config =>
-// {
-//     config.RoutePrefix = string.Empty;
-//     config.SwaggerEndpoint("swagger/v1/swagger.json", "BackupService");
-// });
+app.UseSwagger();
+app.UseSwaggerUI(config =>
+{
+    config.RoutePrefix = string.Empty;
+    config.SwaggerEndpoint("swagger/v1/swagger.json", "Account");
+});
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

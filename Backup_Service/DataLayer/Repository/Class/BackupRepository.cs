@@ -12,11 +12,11 @@ public class BackupRepository : GenericRepository<Backup>, IBackupRepository
         
     }
 
-    public Task<Backup> GetBackupByIdAsync(int id)
-    {
-        var backup = GetAll().FirstAsync(x => x.Id == id);
-        return backup;
-    }
+    // public async Task<Backup> GetBackupByIdAsync(int id)
+    // {
+    //     var backup = await GetByIdAsync(id);
+    //     return backup;
+    // }
 
     public IQueryable GetBackupsByIdStorage(int idStorage)
     {

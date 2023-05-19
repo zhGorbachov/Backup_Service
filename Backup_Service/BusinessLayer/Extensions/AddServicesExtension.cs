@@ -1,16 +1,15 @@
 ﻿using BusinessLayer.Interfaces;
+using BusinessLayer.Mapping;
 using BusinessLayer.Service;
-using DataLayer.Entities;
-using DataLayer.Extensions;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace BusinessLayer.Extensions;
 
 public static class AddServicesExtension
 {
-    public static void AddServices(this IServiceCollection services, IConfiguration configuration)
+    public static void AddServices(this IServiceCollection services)
     {
+        services.AddAutoMapper(typeof(AutoMapperProfile));
         // services.AddScoped<IGenericRepository, GenericRepository>();
         services.AddScoped<IAccountService, AccountService>();
         services.AddScoped<IBackupService, BackupService>();
@@ -18,7 +17,6 @@ public static class AddServicesExtension
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITariffService, TariffService>();
         
-        Injecting.Inject(services, configuration);
     }
     
 }
