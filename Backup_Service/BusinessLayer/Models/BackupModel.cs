@@ -2,6 +2,7 @@
 
 public class BackupModel
 {
+    public int Id { get; set; }
     public int IdStorage { get; set; }
     public int TariffType { get; set; }
     public string Name { get; set; }

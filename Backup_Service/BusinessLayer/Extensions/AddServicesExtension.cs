@@ -16,7 +16,9 @@ public static class AddServicesExtension
         services.AddScoped<IStorageService, StorageService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<ITariffService, TariffService>();
-        
+        services.AddScoped<IJWTService, JWTService>();
+        services.AddScoped<IAuthorizationService, AuthorizationService>();
+
     }
     
 }

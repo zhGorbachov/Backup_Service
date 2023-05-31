@@ -18,6 +18,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasMany(x => x.Accounts)
             .WithOne(x => x.User)
             .HasForeignKey(x => x.IdUser)
-            .HasPrincipalKey(x => x.Id);
+            .HasPrincipalKey(x => x.Id)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

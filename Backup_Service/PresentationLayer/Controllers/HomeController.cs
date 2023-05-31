@@ -1,9 +1,7 @@
-﻿using System.Data.Entity;
-using System.Diagnostics;
-using BusinessLayer.Interfaces;
-using BusinessLayer.Models;
-using BusinessLayer.Service;
+﻿using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using PresentationLayer.Models;
 
 namespace PresentationLayer.Controllers;
@@ -11,46 +9,78 @@ namespace PresentationLayer.Controllers;
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly IAccountService _accountService;
-    private readonly ITariffService _tariffService;
+    private static string _path { get; set; }
+    private readonly IWebHostEnvironment _hostEnvironment;
 
-    public HomeController(ILogger<HomeController> logger, IAccountService accountService, ITariffService tariffService)
+    public HomeController(ILogger<HomeController> logger, IWebHostEnvironment webHostEnvironment)
     {
         _logger = logger;
-        _accountService = accountService;
-        _tariffService = tariffService;
+        _hostEnvironment = webHostEnvironment;
     }
-    [HttpGet("Test")]
+    
     public async Task<IActionResult> Index()
     {
-        var accountModel = new AccountModel()
-        {
-            Login = "zhekagor",
-            Password = "zhekagor",
-            TariffType = 1,
-        };
-
-        var tariffModel = new TariffModel()
-        {
-            TariffName = "High",
-            BackupSize = 123,
-            Price = 5000
-        };
-        
-        
-        // await _tariffService.AddTariffAsync(tariffModel);
-        // Console.WriteLine("200");
-        // await _tariffService.GetTariffModelByIdAsync(1);
-        // Console.WriteLine("200");
-        var account = await _accountService.AddAccountAsync(accountModel);
-        _accountService.GetAccountModelsByTariffType(1);
-        // var accounts = _accountService.GetAllAccounts();
         return View();
     }
-
-    public IActionResult SayHello()
+    
+    
+    public async Task<IActionResult> UploadingPage()
     {
-        return Content("hello");
+        return View();
+    }
+    
+    public async Task<IActionResult> DownloadingFilePage()
+    {
+        Console.WriteLine("FFAAA");
+        Console.WriteLine(_path);
+        return View();
+    }
+    
+    // [Authorize]
+    [HttpPost("UploadFiles")]
+    public async Task<IActionResult> UploadFile(List<IFormFile> files)
+    {
+        Console.WriteLine(files.Count());
+        if (files.Count > 0 && files != null)
+        {
+            Console.WriteLine("ASDASD");
+            var fileB = new FilePath()
+            {
+                filePath = await FileWorking.UploadFile(files, "zhekagor", 1),
+            };
+            Console.WriteLine(fileB.filePath);
+            _path = fileB.filePath;
+            return RedirectToAction("DownloadingFilePage", "Home");
+        }
+        Console.WriteLine("GG");
+        return Redirect("/Home");
+    }
+
+    [HttpGet("GetFile")]
+    public async Task<IActionResult> DownloadFile()
+    {
+        Console.WriteLine(333);
+        var filePath = Path.Combine(_hostEnvironment.WebRootPath, _path);
+        Console.WriteLine(222);
+        var fileName = Path.GetFileName(filePath);
+
+        if (System.IO.File.Exists(filePath))
+        {
+            return PhysicalFile(filePath, GetMimeType(filePath), fileName);
+        }
+        Console.WriteLine(filePath);
+        return NotFound();
+    }
+    
+    private string GetMimeType(string fileName)
+    {
+        var provider = new FileExtensionContentTypeProvider();
+        if (provider.TryGetContentType(fileName, out var contentType))
+        {
+            return contentType;
+        }
+    
+        return "application/octet-stream";
     }
     
     public IActionResult Privacy()

@@ -1,34 +1,65 @@
-﻿<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>@ViewData["Title"] - PresentationLayer</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
-    <link rel="stylesheet" href="~/PresentationLayer.styles.css" asp-append-version="true"/>
+    <title>@ViewData["Title"] - Home page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+        <link href="~/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/css/fontawesome-all.min.css" rel="stylesheet">
+        <link href="~/css/swiper.css" rel="stylesheet">
+    <link href="~/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.min.css">
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container-fluid">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">PresentationLayer</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                <ul class="navbar-nav flex-grow-1">
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <nav id="navbarExample" class="navbar navbar-expand-lg fixed-top navbar-light" aria-label="Main navigation">
+            <div class="container">
+    
+                <!-- Image Logo -->
+                <a class="" href="@Url.Action("Index", "Home")"><img src="/images/icons8-7zip-48.png" alt="alternative"></a> 
+    
+                <!-- Text Logo - Use this if you don't have a graphic logo -->
+                <!-- <a class="navbar-brand logo-text" href="index.html">Zinc</a> -->
+    
+                <button class="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+    
+                <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <ul class="navbar-nav ms-auto navbar-nav-scroll">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="@Url.Action("Index", "Home")">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Tariffs</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">Info</a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdown01">
+                                <li><a class="dropdown-item" href="#">App Details</a></li>
+                                <li><div class="dropdown-divider"></div></li>
+                                <li><a class="dropdown-item" href="#">Terms Conditions</a></li>
+                                <li><div class="dropdown-divider"></div></li>
+                                <li><a class="dropdown-item" href="#">Privacy Policy</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <span class="nav-item">
+                        <a class="btn-solid-sm" href="@Url.Action("LoginPage", "Authorization")" id="LoginButtonLayout">Login</a>
+                    </span>
+                    <span class="nav-item">
+                        <a class="btn-solid-sm" href="@Url.Action("RegistrationPage", "Authorization")" id="RegistrationButtonLayout">Registration</a>
+                    </span>
+                    <span class="nav-item">
+                        <div id="userInfo" style="display:none;">
+                                <input type="button" value="Exit" id="logOut" onclick="exitAccount()" class="btn-solid-sm"/>
+                            </div>
+                    </span>
+                </div> <!-- end of navbar-collapse -->
+            </div> <!-- end of container -->
+    </nav> <!-- end of navbar -->
+    <link rel="icon" href="~/images/mainZnachok.ico">
 </header>
 <div class="container">
     <main role="main" class="pb-3">
@@ -36,14 +67,30 @@
     </main>
 </div>
 
+<div class="copyright bg-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-unstyled li-space-lg p-small">
+                        <li><a href="#">App Details</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div> <!-- end of col -->
+            </div> <!-- enf of row -->
+        </div> <!-- end of container -->
+    </div> <!-- end of copyright --> 
+    <!-- end of copyright -->
 <footer class="border-top footer text-muted">
     <div class="container">
-        &copy; 2023 - PresentationLayer - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        &copy; 2023 - Backup Service - <a asp-area="" asp-controller="Home" asp-action="Privacy"></a>
     </div>
 </footer>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.6/dist/sweetalert2.all.min.js"></script>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

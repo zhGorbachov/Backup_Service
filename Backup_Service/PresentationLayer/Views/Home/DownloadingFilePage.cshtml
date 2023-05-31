@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_Layout";
+}
+
+<body data-bs-spy="scroll" data-bs-target="#navbarExample">
+<header id="header" class="header">
+
+<div class="mx-auto p-2">
+    <div class="position-absolute top-50 mb-1 start-50 translate-middle">
+        <h3>
+            Download your file, as archive
+        </h3>
+        <br/><br/>
+        <div class="position-absolute start-50 translate-middle-x">
+            <a type="button" class="btn-solid-lg" href='@Url.Action("DownloadFile", "Home")'>Download</a>
+        </div>
+    </div>
+</div>
+</header>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+<script>
+
+// function downloadFile(){
+//     $.ajax({
+//     method: "GET" ,
+//     url: "/GetFile",
+//     success: function(res){
+//         console.log(res);
+//         var link = document.createElement("a");
+//           link.download = "test.zip";
+//           link.href = res;
+//           document.body.appendChild(link);
+//           link.click();
+//         }
+//       
+//     })
+    
+//   }
+        
+</script>

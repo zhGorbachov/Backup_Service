@@ -12,25 +12,25 @@ public class AutoMapperProfile : Profile
             .ForMember(account => account.Login,
                 opt => opt.MapFrom(accountModel => accountModel.Login))
             .ForMember(account => account.Password,
-                opt => opt.MapFrom(accountModel => accountModel.Password))
-            .ForMember(account => account.IdStorage,
-                opt => opt.MapFrom(accountModel => accountModel.IdStorage))
-            .ForMember(account => account.IdUser,
-                opt => opt.MapFrom(accountModel => accountModel.IdUser))
-            .ForMember(account => account.TariffType,
-                opt => opt.MapFrom(accountModel => accountModel.TariffType));
+                opt => opt.MapFrom(accountModel => accountModel.Password));
+            // .ForMember(account => account.IdStorage,
+            //     opt => opt.MapFrom(accountModel => accountModel.IdStorage))
+            // .ForMember(account => account.IdUser,
+            //     opt => opt.MapFrom(accountModel => accountModel.IdUser))
+            // .ForMember(account => account.TariffType,
+            //     opt => opt.MapFrom(accountModel => accountModel.TariffType));
 
-        CreateMap<Account, AccountModel>()
-            .ForMember(account => account.Login,
-                opt => opt.MapFrom(accountModel => accountModel.Login))
-            .ForMember(account => account.Password,
-                opt => opt.MapFrom(accountModel => accountModel.Password))
-            .ForMember(account => account.IdStorage,
-                opt => opt.MapFrom(accountModel => accountModel.IdStorage))
-            .ForMember(account => account.IdUser,
-                opt => opt.MapFrom(accountModel => accountModel.IdUser))
-            .ForMember(account => account.TariffType,
-                opt => opt.MapFrom(accountModel => accountModel.TariffType));
+            CreateMap<Account, AccountModel>()
+                .ForMember(account => account.Login,
+                    opt => opt.MapFrom(accountModel => accountModel.Login))
+                .ForMember(account => account.Password,
+                    opt => opt.MapFrom(accountModel => accountModel.Password));
+            // .ForMember(account => account.IdStorage,
+            //     opt => opt.MapFrom(accountModel => accountModel.IdStorage))
+            // .ForMember(account => account.IdUser,
+            //     opt => opt.MapFrom(accountModel => accountModel.IdUser))
+            // .ForMember(account => account.TariffType,
+            //     opt => opt.MapFrom(accountModel => accountModel.TariffType));
 
         CreateMap<Backup, BackupModel>()
             .ForMember(backup => backup.Name,

@@ -18,24 +18,29 @@ public class AccountConfiguration : IEntityTypeConfiguration<Account>
             .HasMaxLength(30);
 
         builder.Property(x => x.TariffType)
-            .IsRequired();
-
-        builder
-            .HasOne(x => x.Tariff)
-            .WithMany(x => x.Accounts)
-            .HasForeignKey(x => x.TariffType)
-            .HasPrincipalKey(x => x.Id);
+            .IsRequired(false);
+        
+        
+        
+        // builder
+        //     .HasOne(x => x.Tariff)
+        //     .WithMany(x => x.Accounts)
+        //     .HasForeignKey(x => x.TariffType)
+        //     .HasPrincipalKey(x => x.Id)
+        //     .OnDelete(DeleteBehavior.Restrict);
 
         builder
             .HasMany(x => x.Backups)
             .WithOne(x => x.Account)
-            .HasForeignKey(x => x.TariffType)
-            .HasPrincipalKey(x => x.TariffType);
+            .HasForeignKey(x => x.IdAccount)
+            .HasPrincipalKey(x => x.Id)
+            .OnDelete(DeleteBehavior.SetNull);
 
         builder
             .HasOne(x => x.Storage)
             .WithMany(x => x.Accounts)
             .HasForeignKey(x => x.IdStorage)
-            .HasPrincipalKey(x => x.Id);
+            .HasPrincipalKey(x => x.Id)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }

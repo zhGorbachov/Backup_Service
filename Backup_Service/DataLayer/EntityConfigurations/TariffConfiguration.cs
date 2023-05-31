@@ -13,5 +13,12 @@ public class TariffConfiguration : IEntityTypeConfiguration<Tariff>
         builder.Property(x => x.Price).IsRequired();
         builder.Property(x => x.BackupSize).IsRequired();
 
+        builder
+            .HasMany(x => x.Accounts)
+            .WithOne(x => x.Tariff)
+            .HasForeignKey(x => x.TariffType)
+            .HasPrincipalKey(x => x.Id)
+            .OnDelete(DeleteBehavior.SetNull);
+        
     }
 }

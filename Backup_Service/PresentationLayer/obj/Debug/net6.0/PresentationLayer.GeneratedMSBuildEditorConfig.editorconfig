@@ -19,6 +19,18 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Authorization/LoginPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxMb2dpblBhZ2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Authorization/RegistrationPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXV0aG9yaXphdGlvblxSZWdpc3RyYXRpb25QYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Home/DownloadingFilePage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEb3dubG9hZGluZ0ZpbGVQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -27,8 +39,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Home/UploadFile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGxvYWRGaWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Home/UploadingPage.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxVcGxvYWRpbmdQYWdlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Shared/_ValidationScriptsPartial.cshtml]
@@ -46,7 +70,3 @@ build_metadata.AdditionalFiles.CssScope =
 [F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
-
-[F:/github/Backup_Service/Backup_Service/PresentationLayer/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-xphr5dixgj

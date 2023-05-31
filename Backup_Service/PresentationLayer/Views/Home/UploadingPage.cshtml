@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<body data-bs-spy="scroll" data-bs-target="#navbarExample">
+<header id="header" class="header">
+    <div class="mx-auto p-2">
+        <div class="position-absolute top-50 mb-1 start-50 translate-middle">
+
+            <form id="uploadForm" enctype="multipart/form-data">
+                <label>Choose file which you want to archivate: </label><br/>
+                <input class="form-control" style="width: 300px;" type="file" name="files" id="fileInput" multiple/><br/><br/>
+
+                <div class="position-absolute start-50 translate-middle-x">
+                    <input id="uploadButton" class="btn-solid-lg" type="button" value="Upload">
+                </div>
+            </form>
+        </div>
+        @* webkitdirectory  *@
+    </div>
+</header>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+
+<script>
+
+    window.onload = function(){
+        setCustomHeaders("/Home/UploadingPage");
+        }
+
+    document.getElementById('uploadButton').addEventListener('click', function(event) {
+          event.preventDefault();
+          var fileInput = document.getElementById('fileInput');
+          var files = fileInput.files;
+          var formData = new FormData();
+          console.log(files)
+          if (files.length == 0){
+              alertNoFile();
+              setTimeout(function (){
+              window.location.href = "/Home"},
+              1000)
+              return;
+              }
+    
+          for (var i = 0; i < files.length; i++) {
+            formData.append('files', files[i]);
+          }
+          fetch('/UploadFiles', {
+            method: 'POST',
+            body: formData
+          })
+          .then(response => {
+            if (response.ok) {
+              console.log('Файлы успешно переданы на сервер');
+            }
+            window.location.href = "/Home/DownloadingFilePage/"
+          })
+          .catch(error => {
+            console.error('Ошибка:', error);
+          });
+        });
+    
+    
+    // }
+  </script>
