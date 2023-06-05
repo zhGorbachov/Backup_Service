@@ -1,0 +1,24 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<body data-bs-spy="scroll" data-bs-target="#navbarExample">
+<header id="header" class="header">
+    <div class="mx-auto p-2">
+        <div class="position-absolute top-50 mb-1 start-50 translate-middle">
+
+            <form id="uploadForm" enctype="multipart/form-data">
+                <h1 class="h1-large">Choose file which you want to archivate: </h1><br/>
+                <input class="form-control" style="width: 300px;" type="file" name="files" id="fileInput" multiple/><br/><br/>
+
+                <div class="position-absolute start-50 translate-middle-x">
+                    <input id="uploadButton" class="btn-solid-lg" type="button" value="Upload" onclick="uploadingPageButton()">
+                </div>
+            </form>
+        </div>
+        @* webkitdirectory  *@
+    </div>
+</header>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</body>
+
