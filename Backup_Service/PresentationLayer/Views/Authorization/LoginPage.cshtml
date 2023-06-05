@@ -30,26 +30,6 @@
 </body>
 <script>
         
-        // отправка запроса к контроллеру ValuesController
-        // async function getData(url) {
-        //     const token = sessionStorage.getItem(tokenKey);
-        //     const response = await fetch(url, {
-        //         method: "POST",
-        //         headers: {
-        //             "Accept": "application/json",
-        //             "Authorization": "Bearer " + token  // передача токена в заголовке
-        //         }
-        //     });
-        //     if (response.ok === true) {
-        //         
-        //         const data = await response.json();
-        //         alert(data)
-        //     }
-        //     else
-        //         console.log("Status: ", response.status);
-        // };
-        
-        // получаем токен
         document.getElementById('loginInAccount').addEventListener('click', x => {
             x.preventDefault();
             getTokenAsync();
