@@ -8,4 +8,5 @@ public interface IAccountRepository : IGenericRepository<Account>
     public IQueryable GetAccountsByTariffType(int idTariff);
     public IQueryable GetAccountsByUserId(int id);
     public IQueryable GetAccountsByStorageId(int idStorage);
+    public int GetAccountIdByLogin(string Login);
 }

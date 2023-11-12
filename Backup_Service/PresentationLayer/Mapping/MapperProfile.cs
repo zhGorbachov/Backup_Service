@@ -44,29 +44,20 @@ public class MapperProfile : Profile
             .ForMember(user => user.PhoneNumber,
                 opt => opt.MapFrom(userModel => userModel.PhoneNumber));
 
-        CreateMap<AccountDTO, AccountModel>()
+        CreateMap<AccountModel, AccountDTO>()
+            .ForMember(account => account.Id,
+                opt => opt.MapFrom(accountModel => accountModel.Id))
             .ForMember(account => account.Login,
                 opt => opt.MapFrom(accountModel => accountModel.Login))
             .ForMember(account => account.Password,
-                opt => opt.MapFrom(accountModel => accountModel.Password));
-            // .ForMember(account => account.IdStorage,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdStorage))
-            // .ForMember(account => account.IdUser,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdUser))
-            // .ForMember(account => account.TariffType,
-            //     opt => opt.MapFrom(accountModel => accountModel.TariffType));
-
-            CreateMap<AccountModel, AccountDTO>()
-                .ForMember(account => account.Login,
-                    opt => opt.MapFrom(accountModel => accountModel.Login))
-                .ForMember(account => account.Password,
-                    opt => opt.MapFrom(accountModel => accountModel.Password));
-            // .ForMember(account => account.IdStorage,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdStorage))
-            // .ForMember(account => account.IdUser,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdUser))
-            // .ForMember(account => account.TariffType,
-            //     opt => opt.MapFrom(accountModel => accountModel.TariffType));
+                opt => opt.MapFrom(accountModel => accountModel.Password))
+            .ForMember(account => account.IdStorage,
+                opt => opt.MapFrom(accountModel => accountModel.IdStorage))
+            .ForMember(account => account.IdUser,
+                opt => opt.MapFrom(accountModel => accountModel.IdUser))
+            .ForMember(account => account.TariffType,
+                opt => opt.MapFrom(accountModel => accountModel.TariffType))
+            .ReverseMap();
         
         CreateMap<BackupDTO, BackupModel>()
             .ForMember(backup => backup.Name,

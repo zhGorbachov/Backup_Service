@@ -2,6 +2,7 @@
 using DataLayer.Context;
 using DataLayer.Entities;
 using DataLayer.Repository.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataLayer.Repository.Class;
 
@@ -37,5 +38,12 @@ public class AccountRepository : GenericRepository<Account>, IAccountRepository
         var account = GetAll().Where(x => x.IdStorage == idStorage);
 
         return account;
+    }
+
+    public int GetAccountIdByLogin(string Login)
+    {
+        var account = GetAll().First(x => x.Login == Login);
+        
+        return account.Id;
     }
 }

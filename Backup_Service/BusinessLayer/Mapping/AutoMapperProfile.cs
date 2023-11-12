@@ -9,28 +9,19 @@ public class AutoMapperProfile : Profile
     public AutoMapperProfile()
     {
         CreateMap<AccountModel, Account>()
+            .ForMember(account => account.Id,
+                opt => opt.MapFrom(accountModel => accountModel.Id))
             .ForMember(account => account.Login,
                 opt => opt.MapFrom(accountModel => accountModel.Login))
             .ForMember(account => account.Password,
-                opt => opt.MapFrom(accountModel => accountModel.Password));
-            // .ForMember(account => account.IdStorage,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdStorage))
-            // .ForMember(account => account.IdUser,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdUser))
-            // .ForMember(account => account.TariffType,
-            //     opt => opt.MapFrom(accountModel => accountModel.TariffType));
-
-            CreateMap<Account, AccountModel>()
-                .ForMember(account => account.Login,
-                    opt => opt.MapFrom(accountModel => accountModel.Login))
-                .ForMember(account => account.Password,
-                    opt => opt.MapFrom(accountModel => accountModel.Password));
-            // .ForMember(account => account.IdStorage,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdStorage))
-            // .ForMember(account => account.IdUser,
-            //     opt => opt.MapFrom(accountModel => accountModel.IdUser))
-            // .ForMember(account => account.TariffType,
-            //     opt => opt.MapFrom(accountModel => accountModel.TariffType));
+                opt => opt.MapFrom(accountModel => accountModel.Password))
+            .ForMember(account => account.IdStorage,
+                opt => opt.MapFrom(accountModel => accountModel.IdStorage))
+            .ForMember(account => account.IdUser,
+                opt => opt.MapFrom(accountModel => accountModel.IdUser))
+            .ForMember(account => account.TariffType,
+                opt => opt.MapFrom(accountModel => accountModel.TariffType))
+            .ReverseMap();
 
         CreateMap<Backup, BackupModel>()
             .ForMember(backup => backup.Name,

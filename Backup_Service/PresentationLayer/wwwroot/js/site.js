@@ -6,7 +6,6 @@ $(document).ready(function(){
     if (token)
     {
         checkAuthorized();
-        console.log("Mayje Working")
         
         $.ajaxSetup({
             method: "GET",
@@ -34,31 +33,50 @@ function exitAccount(){
             document.getElementById("LoginButtonLayout").style.display = "block";
             document.getElementById("RegistrationButtonLayout").style.display = "block";
             localStorage.removeItem("Bearer");
-            localStorage.removeItem("Nickname");
+            localStorage.removeItem("Id");
         });
     }
-    else {
-        Swal.fire({
-            title: 'You arent authorized',
-            text : 'You need to create an account or log into exist.',
-            icon: 'error',
-            confirmButtonText: 'Ok',
-            cancelButtonText: 'Cancel'})
-            .then((result) =>{
-                if (result.isConfirmed) {
-                    window.location.href = secondUrl;
-                }
-            });
-    }
+    // else {
+    //     Swal.fire({
+    //         title: 'You arent authorized',
+    //         text : 'You need to create an account or log into exist.',
+    //         icon: 'error',
+    //         confirmButtonText: 'Ok',
+    //         cancelButtonText: 'Cancel'})
+    //         });
+    // }
 }
 
 function checkAuthorized(){
-    
-        document.getElementById("userInfo").style.display = "block";
-        document.getElementById("LoginButtonLayout").style.display = "none";
-        document.getElementById("RegistrationButtonLayout").style.display = "none";
-    
+    document.getElementById("userInfo").style.display = "block";
+    document.getElementById("LoginButtonLayout").style.display = "none";
+    document.getElementById("RegistrationButtonLayout").style.display = "none";
 }
+
+// function registrateAccount(){
+//     console.log("A")
+//     $.ajax({
+//       method: "POST",
+//       url: "/Registration",
+//         data: {
+//           Login: document.getElementById("login").value,
+//             Password: document.getElementById("password").value
+//         },
+//         success: (response) => {
+//           console.log(response)
+//             Swal.fire({
+//                 title: response,
+//                 icon: "error",
+//                 confirmButtonText: 'Ok',
+//                 timer: 2000
+//         })
+//       },
+//         error: (error) => {
+//           console.log(error)
+//         }
+//     })
+//    
+// }
 
 async function getTokenAsync(){
     var tokenKey = "Bearer";
@@ -73,13 +91,38 @@ async function getTokenAsync(){
             body: formData
         });
         var loginA = document.getElementById("login").value
+        var data1 = {
+            login: loginA
+        }
+        let id = $.ajax({
+            method: 'GET',
+            headers: {"Accept": "application/json"},
+            data: {login: loginA},
+            url: "/GetAccountIdByLogin",
+            success: function (response){
+                
+            },
+            error: function (error){
+                console.log(error)
+            }
+        })
         const data = await response.json();
         if (response.ok === true) {
             localStorage.setItem("Nickname", loginA)
             localStorage.setItem(tokenKey, data.bearer);
             console.log("Bearer " + data.bearer);
+
+            setTimeout(function() {
+                window.location.href = "../Home"
+            }, 1000)
         }
         else {
+            Swal.fire({
+            title: "Wrong login or password",
+            icon: "error",
+            confirmButtonText: 'Ok',
+            timer: 2000
+        });
             console.log("Error: ", response.status, data.errorText);
         }
 }

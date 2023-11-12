@@ -10,6 +10,7 @@ public interface IAccountService
     public IQueryable<AccountModel> GetAccountModelsByTariffType(int idTariff);
     public IQueryable<AccountModel> GetAccountModelsByUserId(int id);
     public IQueryable<AccountModel> GetAccountModelsByStorageId(int idStorage);
+    public int GetAccountModelIdByLogin(string Login);
     public Task<Account> AddAccountAsync(AccountModel accountModel);
     public Task<Account> UpdateAccountAsync(AccountModel accountModel, int id);
     public Task DeleteAccountAsync(int id);

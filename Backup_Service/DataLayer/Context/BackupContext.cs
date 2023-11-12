@@ -112,7 +112,7 @@ public class BackupContext : DbContext
                     IdStorage = 1,
                     Name = "Sobaka123",
                     TariffType = 1,
-                    CreationTime = DateTime.Now,
+                    CreationTime = DateTime.UtcNow,
                     Size = 150,
                     IdAccount = 1
                 },
@@ -122,7 +122,7 @@ public class BackupContext : DbContext
                     IdStorage = 1,
                     Name = "Cot123",
                     TariffType = 1,
-                    CreationTime = DateTime.Now,
+                    CreationTime = DateTime.UtcNow,
                     Size = 150,
                     IdAccount = 2
                 });

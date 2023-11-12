@@ -42,6 +42,13 @@ public class AccountService : IAccountService
         var accounts = _contextAccount.GetAccountsByStorageId(idStorage);
         return _mapper.ProjectTo<AccountModel>(accounts);
     }
+
+    public int GetAccountModelIdByLogin(string Login)
+    {
+        var id = _contextAccount.GetAccountIdByLogin(Login);
+
+        return id;
+    }
     
     public async Task<Account> AddAccountAsync(AccountModel accountModel)
     {

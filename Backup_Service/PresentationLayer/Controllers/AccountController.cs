@@ -47,6 +47,15 @@ public class AccountController : Controller
         var accountsDto = _mapper.ProjectTo<AccountDTO>(accountModels);
         return Ok(accountsDto);
     }
+
+    [HttpGet("GetAccountIdByLogin")]
+    public async Task<AccountDTO> GetAccountDTOIdByLoginAsync(string Login)
+    {
+        var id = _accountService.GetAccountModelIdByLogin(Login);
+        var account = await GetAccountByIdAsync(id);
+
+        return _mapper.Map<AccountDTO>(account);
+    }
     
     [HttpGet("GetAccountById")]
     public async Task<IActionResult> GetAccountByIdAsync(int id)

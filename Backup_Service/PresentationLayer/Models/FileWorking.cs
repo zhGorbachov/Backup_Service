@@ -42,11 +42,11 @@ public static class FileWorking
         }
     }
     
-    public static async Task<string> UploadFile(List<IFormFile> files, string username, int idBackup)
+    public static async Task<string> UploadFile(List<IFormFile> files, BackupDTO backupDto)
     {
         var currentDirectory = Path.Combine(Directory.GetCurrentDirectory(),"Backups\\");
-
-        var uploadsFolder = Path.Combine(currentDirectory, "temp\\", username + "_" + idBackup);
+        Console.WriteLine(currentDirectory);
+        var uploadsFolder = Path.Combine(currentDirectory, "temp\\", backupDto.Name);
 
         if (Directory.Exists(uploadsFolder))
             Directory.Delete(uploadsFolder, true);
@@ -63,7 +63,7 @@ public static class FileWorking
             }
         }
 
-        var zipPath = Path.Combine(currentDirectory,"Backups\\" , username + "_" + idBackup + ".zip");
+        var zipPath = Path.Combine(currentDirectory,"Backups\\" , backupDto.Name + ".zip");
         Compressing(uploadsFolder, zipPath);
         return zipPath;
     }

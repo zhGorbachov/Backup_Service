@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessLayer.Interfaces;
 using BusinessLayer.Models;
 using BusinessLayer.Service;
 using DataLayer.Entities;
@@ -14,6 +15,7 @@ public class AuthorizationController : Controller
 {
     private readonly IMapper _mapper;
     private readonly IAuthorizationService _authorizationService;
+    private readonly IJWTService _jwtService;
     
     public AuthorizationController(IMapper mapper, IAuthorizationService authorizationService)
     {
@@ -42,11 +44,9 @@ public class AuthorizationController : Controller
 
         if (await _authorizationService.RegistrationAccountAsync(accountModel))
         {
-            Login(accountDto);
             return Redirect("/Authorization/LoginPage");
         }
-            
-
+        
         return BadRequest("This username is not suitable!");
     }
 
@@ -65,9 +65,10 @@ public class AuthorizationController : Controller
 
         var request = new
         {
-            bearer = token
+            bearer = token,
         };
         
         return Json(request);
     }
+
 }

@@ -13,7 +13,7 @@ public static class Injecting
     {
         services.AddDbContext<BackupContext>(options =>
         {
-            options.UseSqlServer(configuration["ConnectionString"]);
+            options.UseNpgsql(configuration["ConnectionString"]);
         });
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IAccountRepository, AccountRepository>();
