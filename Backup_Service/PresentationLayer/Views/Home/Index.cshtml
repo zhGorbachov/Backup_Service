@@ -1,0 +1,50 @@
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Home page";
+}
+
+<body data-bs-spy="scroll" data-bs-target="#navbarExample">
+
+<!-- Header -->
+<header id="header" class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-xl-5">
+                <div class="text-container">
+                    <div class="section-title">Welcome to Backup service</div>
+                    <h1 class="h1-large">It web site created to archivate and compress your file</h1>
+                    <p class="p-large">First of all, you need to registrate account or log into your existing account</p>
+                    <button id="goToUpload" class="btn-solid-lg" onclick="performAjaxRequest('/Home/UploadingPage/')" >Start</button>
+                </div> <!-- end of text-container -->
+            </div> <!-- end of col -->
+            <div class="col-lg-6 col-xl-7">
+                <div class="image-container">
+                    <img class="img-fluid" src="~/images/decoration-lines.svg" alt="alternative">
+                </div> <!-- end of image-container -->
+            </div> <!-- end of col -->
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</header> <!-- end of header -->
+<!-- end of header -->
+
+
+
+
+
+<!-- Back To Top Button -->
+<button onclick="topFunction()" id="myBtn">
+    <img src="images/up-arrow.png" alt="alternative">
+</button>
+<!-- end of back to top button -->
+    	
+<!-- Scripts -->
+<script src="js/bootstrap.min.js"></script> <!-- Bootstrap framework -->
+<script src="js/swiper.min.js"></script> <!-- Swiper for image and text sliders -->
+<script src="js/purecounter.min.js"></script> <!-- Purecounter counter for statistics numbers -->
+<script src="js/isotope.pkgd.min.js"></script> <!-- Isotope for filter -->
+<script src="js/scripts.js"></script> <!-- Custom scripts -->
+</body>
+
+<script>
+
+</script>
