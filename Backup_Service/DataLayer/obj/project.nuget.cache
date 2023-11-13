@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "foGP2kHS0ElLSNdsBXCSzdBarRZvzTfPXKsEwQC7nWw2uhWLF1HXIu0K0Q3wgMQN4gCuqEG5eorxOTgpu4xy3Q==",
+  "dgSpecHash": "F+cw4+2weWgp6Z850H/3jN4UqSo7Qx2J8fMbFl0vdR+JWjIB4Yox+UDIH+TGEGDqA5zOX61L984eAH2u/fu+QA==",
   "success": true,
   "projectFilePath": "F:\\github\\Backup_Service\\Backup_Service\\DataLayer\\DataLayer.csproj",
   "expectedPackageFiles": [
@@ -66,7 +66,10 @@
     "C:\\Users\\zhekagor\\.nuget\\packages\\system.text.encodings.web\\6.0.0\\system.text.encodings.web.6.0.0.nupkg.sha512",
     "C:\\Users\\zhekagor\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\zhekagor\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\zhekagor\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
+    "C:\\Users\\zhekagor\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
+    "C:\\Users\\zhekagor\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.20\\microsoft.netcore.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\zhekagor\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.20\\microsoft.windowsdesktop.app.ref.6.0.20.nupkg.sha512",
+    "C:\\Users\\zhekagor\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.20\\microsoft.aspnetcore.app.ref.6.0.20.nupkg.sha512"
   ],
   "logs": []
 }
